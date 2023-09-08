@@ -9,6 +9,7 @@ import State1 from './Components/R02_state1.js';
 import State2 from './Components/R03_state2.js';
 import State3 from './Components/R04_state3.js';
 import Todolist1 from './Components/R05_todolist1.js';
+import ContextApi from './Components/R06_context_api';
 
 function App() {
   // 리액트의 컴포넌트는 딱 하나의 요소만을 반환할 수 있다
@@ -18,24 +19,29 @@ function App() {
     <>
       {/* jsx 주석 */}
       <h1>Hello React!!!</h1>
-  
+
       <div>리액트 배웁니다요</div>
 
-    {/*   <Ex1 /> */}
+      {/*   <Ex1 /> */}
 
-       <Ex2 /> 
+      {/*  <Ex2 /> 
 
       <PropsEx name = {'홍길동'}/> 
       <PropsEx name = {'김길동'}/> 
       <PropsEx name = {'이길동'}/> 
 
-    <State1 />
-     <State2 init = {100}/>
+      <State1 />
+      <State2 init = {100}/> */}
 
-     <hr />
-      <State3/> 
+      <hr />
+      <State3 />
+
+      <Todolist1 />
+
+      <ContextApi />
+
      
-     <Todolist1 />
+
     </>
   );
 }

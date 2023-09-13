@@ -1,24 +1,25 @@
-import React, { useState, useContext } from 'react';
+import React, { useState,useContext } from 'react';
 import { TodoListContext } from './App';
 
 
-const LoginCompoent = () => {
+const LoginComponent = () => {
 
-    // 전역변수 context를 사용
+    // 전역 변수 Context를 사용
     const { setTodoList, setLoginMember, loginMember } = useContext(TodoListContext);
 
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
 
-    const login = () => {
+    const login = ()=> {
         fetch('/login', {
             method : 'POST',
-                        // 전달되는 데이터 타입
-            headers : {'Content-Type' : 'application/json',
+            headers : {
+                // 전달되는 데이터 타입
+                'Content-Type' : 'application/json',
 
-            // 응답 데이터 타입
-            'Accept' : 'application/json'},
-            
+                // 응답 데이터 타입
+                'Accept' : 'application/json'
+            },
             body : JSON.stringify({
                 id : id,
                 pw : pw
@@ -27,26 +28,35 @@ const LoginCompoent = () => {
         .then(resp => resp.json())
         .then(map => {
             console.log(map);
-
-            // 로그인 실패 시
+            // 로그인 실패 시 
             if(map.loginMember === null){
-                alert('아이디 또는 비밀번호가 일치하지 않습니다');
+                alert('아이디 또는 비밀번호가 일치하지 않습니다.');
                 return;
             }
 
-            // 로그인 성공 시
+            // 로그인 성공 시 
             setLoginMember(map.loginMember);
             setTodoList(map.todoList);
             setId('');
             setPw('');
+
         })
-        .catch(e => console.log(e))
+        .catch(e => {
+            console.log(e);
+        })
 
     };
 
-    const logout = () => {
-        setLoginMember(null);
+    const logout = ()=> {
+
+        if(loginMember !== null){
+        
+            setLoginMember(null);
+
+        }
+        
     };
+
 
     return (
         <div className="login-container">
@@ -74,14 +84,9 @@ const LoginCompoent = () => {
             {loginMember && (
                 <button onClick={logout}>로그아웃</button>
             )}
-        </div>
+        </div>        
     );
+
 }
 
-export default LoginCompoent;
-
-
-
-
-
-
+export default LoginComponent;
